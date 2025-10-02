@@ -3,9 +3,9 @@ import { Outlet } from 'react-router';
 
 const SessionLayer: FC = () => {
   return (
-    <section className="min-h-screen">
+    <main className="min-h-screen p-5 flex items-center justify-center">
       <Outlet />
-    </section>
+    </main>
   );
 };
 

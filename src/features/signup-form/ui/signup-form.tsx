@@ -4,7 +4,7 @@ import { type FC, type FormEvent } from 'react';
 import { Link } from 'react-router';
 import z from 'zod';
 
-const SignInForm: FC = () => {
+const SignUpForm: FC = () => {
   const form = useForm( {
     defaultValues: { email: '', password: '' },
     onSubmit: async ( { value } ) => { console.log( value ); }
@@ -19,7 +19,7 @@ const SignInForm: FC = () => {
   return (
     <form onSubmit={handleSubmitForm} className="min-w-sm">
       <Fieldset>
-        <Legend className="text-2xl text-center font-bold">Sign in</Legend>
+        <Legend className="text-2xl text-center font-bold">Sign up</Legend>
         <form.Field name="email" validators={{ onChange: z.email( 'Invalid email address' ) }} children={field =>
           <Field className="block mt-8 relative">
             <Input id={field.name} name={field.name} value={field.state.value} onChange={e => field.handleChange( e.target.value )} type="email" placeholder="name@company.com" className="peer w-full p-3.5 pl-11 rounded-xl bg-[#f5f5f5] placeholder:text-[#C2C3CB] data-[error=true]:outline-2" />
@@ -41,14 +41,14 @@ const SignInForm: FC = () => {
         />
         <form.Subscribe selector={state => [ state.canSubmit, state.isSubmitting ]} children={( [ canSubmit, isSubmitting ] ) => (
           <Button disabled={!canSubmit} type="submit" className="w-full mt-8 p-3.5 rounded-xl bg-black text-white cursor-pointer outline-offset-3 disabled:cursor-default disabled:opacity-70">
-            {isSubmitting ? '•••' : 'Sign in'}
+            {isSubmitting ? '•••' : 'Sign up'}
           </Button>
         )}
         />
       </Fieldset>
-      <p className="mt-5 text-center leading-6">Don&apos;t have an account? <Link to="/signup" className="font-bold hover:underline">Register</Link></p>
+      <p className="mt-5 text-center leading-6">Already have an account? <Link to="/signin" className="font-bold hover:underline">Log in</Link></p>
     </form>
   );
 };
 
-export default SignInForm;
+export default SignUpForm;
