@@ -1,7 +1,7 @@
 import ky from 'ky';
 
 export const kyInstance = ky.create( {
-  prefixUrl: '',
+  prefixUrl: 'http://localhost:4173',
   credentials: 'include',
   headers: { 'Content-Type': 'application/json' },
   retry: {
