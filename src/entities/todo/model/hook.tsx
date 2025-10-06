@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { todoService } from '../api/api';
+import type { TodoDTOType } from './schema';
 
 const useTodo = () => {
 
@@ -12,21 +13,22 @@ const useTodo = () => {
   } );
 
   const create = useMutation( {
-    mutationFn: () => todoService.create(),
+    mutationFn: ( data: TodoDTOType ) => todoService.create( data ),
     onSuccess: () => { queryClient.invalidateQueries( { queryKey: [ 'todos' ] } ); }
   } );
 
   const update = useMutation( {
-    mutationFn: () => todoService.update(),
+    mutationFn: ( data: TodoDTOType ) => todoService.update( data ),
     onSuccess: () => { queryClient.invalidateQueries( { queryKey: [ 'todos' ] } ); }
   } );
 
   const remove = useMutation( {
-    mutationFn: () => todoService.remove(),
+    mutationFn: ( id: string ) => todoService.remove( id ),
     onSuccess: () => { queryClient.invalidateQueries( { queryKey: [ 'todos' ] } ); }
   } );
 
   return { isPending, error, todos, create: create.mutate, update: update.mutate, remove: remove.mutate };
+
 };
 
 export default useTodo;

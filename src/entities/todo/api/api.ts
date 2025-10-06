@@ -1,21 +1,23 @@
 import { kyInstance } from '@/shared/libs';
 
+import type { TodoDTOType } from '../model/schema';
+
 class TodoService {
 
   fetch = async () => {
     return await kyInstance( 'todo', { method: 'get' } );
   };
 
-  create = async () => {
-    return await kyInstance( 'todo', { method: 'post' } );
+  create = async ( data: TodoDTOType ) => {
+    return await kyInstance( 'todo', { method: 'post', body: JSON.stringify( data ) } );
   };
 
-  update = async () => {
-    return await kyInstance( 'todo', { method: 'put' } );
+  update = async ( data: TodoDTOType ) => {
+    return await kyInstance( 'todo', { method: 'put', body: JSON.stringify( data ) } );
   };
 
-  remove = async () => {
-    return await kyInstance( 'todo', { method: 'delete' } );
+  remove = async ( id: string ) => {
+    return await kyInstance( `todo/${id}`, { method: 'delete' } );
   };
 
 }
