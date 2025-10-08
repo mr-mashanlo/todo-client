@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 
 const SessionLayer: FC = () => {
   return (
-    <main className="min-h-screen p-5 flex items-center justify-center">
+    <main className="min-h-screen p-4 sm:p-5 flex items-center justify-center">
       <Outlet />
     </main>
   );
