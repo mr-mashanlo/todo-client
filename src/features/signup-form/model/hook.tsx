@@ -1,7 +1,7 @@
 import { useForm } from '@tanstack/react-form';
 import { HTTPError } from 'ky';
 
-import { useSession } from '@/entities/session';
+import { useSession, useSessionStore } from '@/entities/session';
 import { mapServerErrors } from '@/shared/mappers';
 
 interface Props {
@@ -11,12 +11,15 @@ interface Props {
 
 const useSignupForm = ( { onSuccess, onError }: Props = {} ) => {
   const { signup } = useSession();
+  const setID = useSessionStore( state => state.setID );
 
   const form = useForm( {
     defaultValues: { email: '', password: '' },
     onSubmit: async ( { value, formApi } ) => {
       try {
-        await signup( value );
+        const response = await signup( value );
+        const { id } = await response.json();
+        setID( id );
         onSuccess?.();
       } catch ( error ) {
         if ( error instanceof HTTPError ) {
