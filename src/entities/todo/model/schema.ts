@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const TodoDTOZod = z.object( {
-  title: z.string().min( 3, 'Title must be 3 or more characters long' )
+  title: z.string()
 } );
 
 export type TodoDTOType = z.infer<typeof TodoDTOZod>;

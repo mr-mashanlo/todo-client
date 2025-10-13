@@ -9,22 +9,22 @@ const useTodo = () => {
 
   const { isPending, error, data: todos } = useQuery( {
     queryKey: [ 'todos' ],
-    queryFn: () => todoService.fetch()
+    queryFn: async () => await todoService.fetch()
   } );
 
   const create = useMutation( {
-    mutationFn: ( data: TodoDTOType ) => todoService.create( data ),
-    onSuccess: () => { queryClient.invalidateQueries( { queryKey: [ 'todos' ] } ); }
+    mutationFn: async ( { data }: { data: TodoDTOType } ) => await todoService.create( data ),
+    onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'todos' ] } )
   } );
 
   const update = useMutation( {
-    mutationFn: ( data: TodoDTOType ) => todoService.update( data ),
-    onSuccess: () => { queryClient.invalidateQueries( { queryKey: [ 'todos' ] } ); }
+    mutationFn: async ( { id, data }: { id: string, data: TodoDTOType } ) => await todoService.update( id, data ),
+    onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'todos' ] } )
   } );
 
   const remove = useMutation( {
-    mutationFn: ( id: string ) => todoService.remove( id ),
-    onSuccess: () => { queryClient.invalidateQueries( { queryKey: [ 'todos' ] } ); }
+    mutationFn: async ( { id }: { id: string } ) => await todoService.remove( id ),
+    onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'todos' ] } )
   } );
 
   return { isPending, error, todos, create: create.mutate, update: update.mutate, remove: remove.mutate };
