@@ -1,8 +1,15 @@
-import { type RouteObject } from 'react-router';
+import { redirect, type RouteObject } from 'react-router';
+
+import { useSessionStore } from '@/entities/session';
 
 import HomePage from '../ui/page';
 
 export const homeRouter: RouteObject = {
   path: '/',
-  element: <HomePage />
+  element: <HomePage />,
+  loader: () => {
+    if ( !useSessionStore.getState().id ) {
+      return redirect( '/signin' );
+    }
+  }
 };

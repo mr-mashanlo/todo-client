@@ -1,8 +1,15 @@
-import { type RouteObject } from 'react-router';
+import { redirect, type RouteObject } from 'react-router';
+
+import { useSessionStore } from '@/entities/session';
 
 import SignInPage from '../ui/page';
 
 export const signInRouter: RouteObject = {
   path: '/signin',
-  element: <SignInPage />
+  element: <SignInPage />,
+  loader: () => {
+    if ( useSessionStore.getState().id ) {
+      return redirect( '/' );
+    }
+  }
 };
