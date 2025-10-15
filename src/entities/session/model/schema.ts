@@ -9,7 +9,8 @@ export type SessionDTOType = z.infer<typeof SessionDTOZod>;
 
 export const SessionZod = z.object( {
   id: z.string(),
-  token: z.string()
+  token: z.string(),
+  expired: z.number()
 } );
 
 export type SessionType = z.infer<typeof SessionZod>;
