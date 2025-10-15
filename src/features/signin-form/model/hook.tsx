@@ -11,15 +11,14 @@ interface Props {
 
 const useSigninForm = ( { onSuccess, onError }: Props = {} ) => {
   const { signin } = useSession();
-  const setID = useSessionStore( state => state.setID );
+  const setIsAuthorized = useSessionStore( state => state.setIsAuthorized );
 
   const form = useForm( {
     defaultValues: { email: '', password: '' },
     onSubmit: async ( { value, formApi } ) => {
       try {
-        const response = await signin( value );
-        const { id } = await response.json();
-        setID( id );
+        await signin( value );
+        setIsAuthorized( true );
         onSuccess?.();
       } catch ( error ) {
         if ( error instanceof HTTPError ) {

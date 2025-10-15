@@ -8,7 +8,7 @@ export const signUpRouter: RouteObject = {
   path: '/signup',
   element: <SignUpPage />,
   loader: () => {
-    if ( useSessionStore.getState().id ) {
+    if ( useSessionStore.getState().isAuthorized ) {
       return redirect( '/' );
     }
   }

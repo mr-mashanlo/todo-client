@@ -8,7 +8,7 @@ export const signInRouter: RouteObject = {
   path: '/signin',
   element: <SignInPage />,
   loader: () => {
-    if ( useSessionStore.getState().id ) {
+    if ( useSessionStore.getState().isAuthorized ) {
       return redirect( '/' );
     }
   }
