@@ -1,8 +1,8 @@
 import { type FC } from 'react';
 import { Outlet } from 'react-router';
 
-const MainLayer: FC = () => {
+const MainLayout: FC = () => {
   return <Outlet />;
 };
 
-export default MainLayer;
+export default MainLayout;

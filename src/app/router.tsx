@@ -4,20 +4,32 @@ import { homeRouter } from '@/pages/home';
 import { signInRouter } from '@/pages/sign-in';
 import { signUpRouter } from '@/pages/sign-up';
 
-import MainLayer from './layers/main';
-import SessionLayer from './layers/session';
+import MainLayout from './layouts/main';
+import ProtectedLayout from './layouts/protected';
+import PublicLayout from './layouts/public';
+import SessionLayout from './layouts/session';
 
 const router = createBrowserRouter( [
   {
     path: '/',
     children: [
       {
-        element: <SessionLayer />,
-        children: [ signInRouter, signUpRouter ]
+        element: <PublicLayout />,
+        children: [
+          {
+            element: <SessionLayout />,
+            children: [ signInRouter, signUpRouter ]
+          }
+        ]
       },
       {
-        element: <MainLayer />,
-        children: [ homeRouter ]
+        element: <ProtectedLayout />,
+        children: [
+          {
+            element: <MainLayout />,
+            children: [ homeRouter ]
+          }
+        ]
       }
     ]
   }

@@ -1,15 +1,8 @@
-import { redirect, type RouteObject } from 'react-router';
-
-import { useSessionStore } from '@/entities/session';
+import { type RouteObject } from 'react-router';
 
 import SignUpPage from '../ui/page';
 
 export const signUpRouter: RouteObject = {
   path: '/signup',
-  element: <SignUpPage />,
-  loader: () => {
-    if ( useSessionStore.getState().isAuthorized ) {
-      return redirect( '/' );
-    }
-  }
+  element: <SignUpPage />
 };
