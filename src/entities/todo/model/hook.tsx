@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { todoService } from '../api/api';
-import type { TodoDTOType } from './schema';
+import type { TodoDTO } from './schema';
 
 const useTodo = () => {
 
@@ -13,12 +13,12 @@ const useTodo = () => {
   } );
 
   const create = useMutation( {
-    mutationFn: async ( { data }: { data: TodoDTOType } ) => await todoService.create( data ),
+    mutationFn: async ( { data }: { data: TodoDTO } ) => await todoService.create( data ),
     onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'todos' ] } )
   } );
 
   const update = useMutation( {
-    mutationFn: async ( { id, data }: { id: string, data: TodoDTOType } ) => await todoService.update( id, data ),
+    mutationFn: async ( { id, data }: { id: string, data: TodoDTO } ) => await todoService.update( id, data ),
     onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'todos' ] } )
   } );
 

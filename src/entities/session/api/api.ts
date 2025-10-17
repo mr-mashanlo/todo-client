@@ -2,15 +2,15 @@ import type { KyResponse } from 'ky';
 
 import { kyInstance } from '@/shared/libs';
 
-import type { SessionDTOType, SessionType } from '../model/schema';
+import type { Session, SessionDTO } from '../model/schema';
 
 class SessionService {
 
-  signin = ( data: SessionDTOType ): Promise<KyResponse<SessionType>> => {
+  signin = ( data: SessionDTO ): Promise<KyResponse<Session>> => {
     return kyInstance( 'session/signin', { method: 'post', body: JSON.stringify( data ) } );
   };
 
-  signup = ( data: SessionDTOType ): Promise<KyResponse<SessionType>> => {
+  signup = ( data: SessionDTO ): Promise<KyResponse<Session>> => {
     return kyInstance( 'session/signup', { method: 'post', body: JSON.stringify( data ) } );
   };
 
@@ -18,7 +18,7 @@ class SessionService {
     return kyInstance( 'session/signout', { method: 'get' } );
   };
 
-  refresh = (): Promise<KyResponse<SessionType>> => {
+  refresh = (): Promise<KyResponse<Session>> => {
     return kyInstance( 'session/refresh', { method: 'get' } );
   };
 

@@ -1,16 +1,16 @@
 import { z } from 'zod';
 
-export const SessionDTOZod = z.object( {
+export const SessionDTO = z.object( {
   email: z.email( 'Invalid email address' ),
   password: z.string().min( 8, 'Password must be 8 or more characters long' )
 } );
 
-export type SessionDTOType = z.infer<typeof SessionDTOZod>;
+export type SessionDTO = z.infer<typeof SessionDTO>;
 
-export const SessionZod = z.object( {
+export const Session = z.object( {
   id: z.string(),
   token: z.string(),
   expired: z.number()
 } );
 
-export type SessionType = z.infer<typeof SessionZod>;
+export type Session = z.infer<typeof Session>;

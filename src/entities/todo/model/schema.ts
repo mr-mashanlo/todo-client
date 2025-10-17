@@ -1,12 +1,14 @@
 import { z } from 'zod';
 
-export const TodoDTOZod = z.object( {
+import type { PaginatedResponse } from '@/shared/types';
+
+export const TodoDTO = z.object( {
   title: z.string()
 } );
 
-export type TodoDTOType = z.infer<typeof TodoDTOZod>;
+export type TodoDTO = z.infer<typeof TodoDTO>;
 
-export const TodoZod = z.object( {
+export const Todo = z.object( {
   _id: z.string(),
   title: z.string(),
   created: z.string(),
@@ -14,4 +16,6 @@ export const TodoZod = z.object( {
   completed: z.boolean()
 } );
 
-export type TodoType = z.infer<typeof TodoZod>;
+export type Todo = z.infer<typeof Todo>;
+
+export type PaginatedTodo = PaginatedResponse<Todo>

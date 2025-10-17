@@ -1,11 +1,11 @@
 import { sessionService } from '../api/api';
-import type { SessionDTOType } from './schema';
+import type { SessionDTO } from './schema';
 
 const useSession = () => {
 
-  const signin = ( data: SessionDTOType ) => sessionService.signin( data );
+  const signin = ( data: SessionDTO ) => sessionService.signin( data );
 
-  const signup = ( data: SessionDTOType ) => sessionService.signup( data );
+  const signup = ( data: SessionDTO ) => sessionService.signup( data );
 
   const signout = () => sessionService.signout();
 
