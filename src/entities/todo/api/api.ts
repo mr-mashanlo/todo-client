@@ -1,11 +1,13 @@
 import { kyInstance } from '@/shared/libs';
+import type { SearchParams } from '@/shared/types';
 
 import type { PaginatedTodo, Todo, TodoDTO } from '../model/schema';
 
 class TodoService {
 
-  fetch = async (): Promise<PaginatedTodo> => {
-    const response = await kyInstance( 'todo' );
+  fetch = async ( params?: SearchParams ): Promise<PaginatedTodo> => {
+    const searchParams = new URLSearchParams( params );
+    const response = await kyInstance( `todo?${searchParams}` );
     return await response.json();
   };
 

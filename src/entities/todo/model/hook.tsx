@@ -1,15 +1,18 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+import type { SearchParams } from '@/shared/types';
+
 import { todoService } from '../api/api';
 import type { TodoDTO } from './schema';
 
-const useTodo = () => {
+const useTodo = ( params?: SearchParams ) => {
 
   const queryClient = useQueryClient();
 
   const { isPending, error, data: todos } = useQuery( {
-    queryKey: [ 'todos' ],
-    queryFn: async () => await todoService.fetch()
+    queryKey: [ 'todos', params ],
+    queryFn: async () => await todoService.fetch( params ),
+    placeholderData: data => data
   } );
 
   const create = useMutation( {
