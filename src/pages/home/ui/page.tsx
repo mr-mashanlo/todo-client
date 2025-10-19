@@ -4,8 +4,10 @@ import { TodoSection } from '@/widgets/todos';
 
 export const HomePage: FC = () => {
   return (
-    <div className="p-10">
-      <TodoSection />
+    <div className="p-4 sm:p-10">
+      <div className="max-w-2xl mx-auto">
+        <TodoSection />
+      </div>
     </div>
   );
 };
