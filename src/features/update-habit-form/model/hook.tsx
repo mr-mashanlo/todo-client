@@ -4,7 +4,7 @@ import { HTTPError } from 'ky';
 import { type Habit, useHabit } from '@/entities/habit';
 import * as mappers from '@/shared/mappers';
 
-const useUpdateHabitForm = ( { _id, title, days }: Habit ) => {
+const useUpdateHabit = ( { _id, title, days }: Habit ) => {
   const { update } = useHabit();
 
   const form = useForm( {
@@ -24,4 +24,4 @@ const useUpdateHabitForm = ( { _id, title, days }: Habit ) => {
   return form;
 };
 
-export default useUpdateHabitForm;
+export default useUpdateHabit;

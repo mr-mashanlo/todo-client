@@ -9,7 +9,7 @@ interface Props {
   onError?: () => void
 }
 
-const useSignupForm = ( { onSuccess, onError }: Props = {} ) => {
+const useSignUp = ( { onSuccess, onError }: Props = {} ) => {
   const { signup } = useSession();
   const setIsAuthorized = useSessionStore( state => state.setIsAuthorized );
 
@@ -33,4 +33,4 @@ const useSignupForm = ( { onSuccess, onError }: Props = {} ) => {
   return form;
 };
 
-export default useSignupForm;
+export default useSignUp;

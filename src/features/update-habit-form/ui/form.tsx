@@ -4,14 +4,14 @@ import { type ChangeEvent, type FC, type FormEvent } from 'react';
 import type { Habit } from '@/entities/habit';
 import { debounce } from '@/shared/utils/debounce';
 
-import useUpdateHabitForm from '../model/hook';
+import useUpdateHabit from '../model/hook';
 
 interface Props {
   habit: Habit
 }
 
 const UpdateHabitForm: FC<Props> = ( { habit } ) => {
-  const form = useUpdateHabitForm( habit );
+  const form = useUpdateHabit( habit );
 
   const handleFormSubmit = ( e: FormEvent<HTMLFormElement> ) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const UpdateHabitForm: FC<Props> = ( { habit } ) => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit} onChange={handleFormChange} className="grid grid-cols-5 gap-2 items-center">
+    <form onSubmit={handleFormSubmit} onChange={handleFormChange} className="w-full grid grid-cols-5 gap-2 items-center">
       <form.Field name="title" children={field =>
         <Field className="col-span-3 line-clamp-1">
           <Input type="text" name={field.name} value={field.state.value} onChange={e => field.handleChange( e.target.value )} className="w-full outline-none" />

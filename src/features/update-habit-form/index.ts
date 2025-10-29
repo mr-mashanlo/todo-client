@@ -1,3 +1,3 @@
-import UpdateHabitForm from './ui/update-habit-form';
+import UpdateHabitForm from './ui/form';
 
 export { UpdateHabitForm };

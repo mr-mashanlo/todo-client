@@ -6,19 +6,19 @@ import z from 'zod';
 
 import { ClosedEyeIcon, EmailIcon, LockIcon, OpenEyeIcon } from '@/shared/icons';
 
-import useSignupForm from '../model/hook';
+import useSignIn from '../model/hook';
 
 interface Props {
   setMood?: ( mood: 'neutral' | 'angry' | 'sad' ) => void
 }
 
-const SignUpForm: FC<Props> = ( { setMood } ) => {
+const SignInForm: FC<Props> = ( { setMood } ) => {
   const navigate = useNavigate();
-  const form = useSignupForm( { onSuccess: () => navigate( '/' ) } );
+  const form = useSignIn( { onSuccess: () => navigate( '/' ) } );
   const canSubmit = useStore( form.store, ( state ) => state.canSubmit );
   const [ isPasswordVisible, setIsPasswordVisible ] = useState<boolean>( false );
 
-  const handleSubmitForm = ( e: FormEvent<HTMLFormElement> ) => {
+  const handleFormSubmit = ( e: FormEvent<HTMLFormElement> ) => {
     e.preventDefault();
     e.stopPropagation();
     form.handleSubmit();
@@ -34,9 +34,9 @@ const SignUpForm: FC<Props> = ( { setMood } ) => {
   }, [ setMood, isPasswordVisible, canSubmit ] );
 
   return (
-    <form onSubmit={handleSubmitForm} className="w-full sm:w-[25rem]">
+    <form onSubmit={handleFormSubmit} className="w-full sm:w-[25rem]">
       <Fieldset>
-        <Legend className="text-2xl text-center font-bold">Sign up</Legend>
+        <Legend className="text-2xl text-center font-bold">Sign in</Legend>
         <form.Field name="email" validators={{ onChange: z.email( 'Invalid email address' ) }} children={field =>
           <Field className="block mt-8 relative">
             <Input id={field.name} name={field.name} value={field.state.value} onChange={e => field.handleChange( e.target.value )} data-error={field.state.meta.isValid ? false : true} type="email" placeholder="name@company.com" className="peer w-full p-3.5 pl-11 rounded-xl bg-[#f5f5f5] placeholder:text-[#C2C3CB] data-[error=true]:bg-rose-50" />
@@ -46,7 +46,7 @@ const SignUpForm: FC<Props> = ( { setMood } ) => {
         />
         <form.Field name="password" validators={{ onChange: z.string().min( 8, 'Must be at least 8 characters long' ) }} children={field =>
           <Field className="block mt-8 relative">
-            <Input id={field.name} name={field.name} value={field.state.value} onChange={e => field.handleChange( e.target.value )} data-error={field.state.meta.isValid ? false : true} type={isPasswordVisible ? 'text' : 'password'} placeholder="•••••••••" className="peer w-full p-3.5 pl-11 rounded-xl bg-[#f5f5f5] placeholder:text-[#C2C3CB] data-[error=true]:bg-rose-50" />
+            <Input id={field.name} name={field.name} value={field.state.value} onChange={e => field.handleChange( e.target.value )} data-error={field.state.meta.isValid ? false : true} type={isPasswordVisible ? 'text' : 'password'} placeholder="•••••••••" className="peer w-full p-3.5 px-11 rounded-xl bg-[#f5f5f5] placeholder:text-[#C2C3CB] data-[error=true]:bg-rose-50" />
             <LockIcon className="w-4 h-4 fill-[#C2C3CB] peer-focus:fill-black absolute top-1/2 left-4 -translate-y-1/2" aria-hidden="true" />
             <Button onClick={handlePasswordClick} type="button" className="w-5 h-5 absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer">
               {isPasswordVisible ? <OpenEyeIcon className="w-5 h-5 fill-[#C2C3CB]" /> : <ClosedEyeIcon className="w-5 h-5 fill-[#C2C3CB]" />}
@@ -56,13 +56,13 @@ const SignUpForm: FC<Props> = ( { setMood } ) => {
         />
         <form.Subscribe selector={state => [ state.canSubmit, state.isSubmitting ]} children={( [ canSubmit, isSubmitting ] ) =>
           <Button disabled={!canSubmit} type="submit" className="w-full mt-8 p-3.5 rounded-xl bg-black text-white cursor-pointer outline-offset-3 disabled:cursor-default disabled:opacity-70">
-            {isSubmitting ? '•••' : 'Sign up'}
+            {isSubmitting ? '•••' : 'Sign in'}
           </Button> }
         />
       </Fieldset>
-      <p className="mt-5 text-center leading-6">Already have an account? <Link to="/signin" className="font-bold hover:underline">Log in</Link></p>
+      <p className="mt-5 text-center leading-6">Don&apos;t have an account? <Link to="/signup" className="font-bold hover:underline">Register</Link></p>
     </form>
   );
 };
 
-export default SignUpForm;
+export default SignInForm;
