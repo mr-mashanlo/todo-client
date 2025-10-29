@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router';
 
+import { habitRouter } from '@/pages/habits';
 import { homeRouter } from '@/pages/home';
 import { signInRouter } from '@/pages/sign-in';
 import { signUpRouter } from '@/pages/sign-up';
@@ -27,7 +28,7 @@ const router = createBrowserRouter( [
         children: [
           {
             element: <MainLayout />,
-            children: [ homeRouter ]
+            children: [ homeRouter, habitRouter ]
           }
         ]
       }
