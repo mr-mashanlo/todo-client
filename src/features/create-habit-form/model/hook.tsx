@@ -4,7 +4,7 @@ import { HTTPError } from 'ky';
 import { useHabit } from '@/entities/habit';
 import * as mappers from '@/shared/mappers';
 
-const useCreateHabitForm = () => {
+const useCreateHabit = () => {
   const { create } = useHabit();
   const today = new Date( Date.now() );
 
@@ -27,7 +27,7 @@ const useCreateHabitForm = () => {
     }
   } );
 
-  return form;
+  return { form, create };
 };
 
-export default useCreateHabitForm;
+export default useCreateHabit;

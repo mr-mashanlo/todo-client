@@ -1,3 +1,4 @@
-import CreateHabitForm from './ui/create-habit-form';
+import CreateHabitButton from './ui/button';
+import CreateHabitForm from './ui/form';
 
-export { CreateHabitForm };
+export { CreateHabitButton, CreateHabitForm };

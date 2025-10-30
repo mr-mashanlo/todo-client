@@ -2,10 +2,10 @@ import { Button, Description, Field, Fieldset, Input, Label } from '@headlessui/
 import { type ChangeEvent, type FC, type FormEvent } from 'react';
 import z from 'zod';
 
-import useCreateHabitForm from '../model/hook';
+import useCreateHabit from '../model/hook';
 
 const CreateHabitForm: FC = () => {
-  const form = useCreateHabitForm();
+  const { form } = useCreateHabit();
 
   const handleFormSubmit = ( e: FormEvent<HTMLFormElement> ) => {
     e.preventDefault();
