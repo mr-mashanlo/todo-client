@@ -1,5 +1,6 @@
-import { Field, Fieldset, Input, Label } from '@headlessui/react';
+import { Description, Field, Fieldset, Input, Label } from '@headlessui/react';
 import { type ChangeEvent, type FC, type FormEvent } from 'react';
+import z from 'zod';
 
 import type { Habit } from '@/entities/habit';
 import { debounce } from '@/shared/utils/debounce';
@@ -31,9 +32,10 @@ const UpdateHabitForm: FC<Props> = ( { habit } ) => {
 
   return (
     <form onSubmit={handleFormSubmit} onChange={handleFormChange} className="w-full grid grid-cols-5 gap-2 items-center">
-      <form.Field name="title" children={field =>
-        <Field className="col-span-3 line-clamp-1">
+      <form.Field name="title" validators={{ onChange: z.string().min( 3, 'Must be at least 3 characters long' ) }} children={field =>
+        <Field className="col-span-3 line-clamp-1 relative">
           <Input type="text" name={field.name} value={field.state.value} onChange={e => field.handleChange( e.target.value )} className="w-full outline-none" />
+          {!field.state.meta.isValid && <Description className="text-rose-500 absolute top-0 right-0">{field.state.meta.errors.map( error => error?.message ).join( ', ' )}</Description>}
         </Field>}
       />
       <form.Field name="days" children={field =>
