@@ -7,13 +7,14 @@ export const HabitDTO = z.object( {
   days: z.array( z.string() )
 } );
 
-export type HabitDTO = z.infer<typeof HabitDTO>;
-
 export const Habit = z.object( {
   _id: z.string(),
+  user: z.string(),
   title: z.string(),
   days: z.array( z.string() )
 } );
+
+export type HabitDTO = z.infer<typeof HabitDTO>;
 
 export type Habit = z.infer<typeof Habit>;
 

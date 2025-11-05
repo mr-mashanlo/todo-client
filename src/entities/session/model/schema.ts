@@ -5,12 +5,12 @@ export const SessionDTO = z.object( {
   password: z.string().min( 8, 'Password must be 8 or more characters long' )
 } );
 
-export type SessionDTO = z.infer<typeof SessionDTO>;
-
 export const Session = z.object( {
   id: z.string(),
   token: z.string(),
   expired: z.number()
 } );
+
+export type SessionDTO = z.infer<typeof SessionDTO>;
 
 export type Session = z.infer<typeof Session>;

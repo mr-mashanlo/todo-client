@@ -2,7 +2,7 @@ import { useForm } from '@tanstack/react-form';
 import { HTTPError } from 'ky';
 
 import { useHabit } from '@/entities/habit';
-import * as mappers from '@/shared/mappers';
+import { mapServerErrors } from '@/shared/mappers';
 
 const useCreateHabit = () => {
   const { create } = useHabit();
@@ -21,7 +21,7 @@ const useCreateHabit = () => {
       } catch ( error ) {
         if ( error instanceof HTTPError ) {
           const errors = await error.response.json();
-          formApi.setErrorMap( { onChange: { fields: mappers.mapServerErrors( errors.issues ) } } );
+          formApi.setErrorMap( { onChange: { fields: mapServerErrors( errors.issues ) } } );
         }
       }
     }

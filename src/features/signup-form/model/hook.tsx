@@ -14,7 +14,11 @@ const useSignUp = ( { onSuccess, onError }: Props = {} ) => {
   const setIsAuthorized = useSessionStore( state => state.setIsAuthorized );
 
   const form = useForm( {
-    defaultValues: { email: '', password: '' },
+    defaultValues: {
+      email: '',
+      password: ''
+    },
+
     onSubmit: async ( { value, formApi } ) => {
       try {
         await signup( value );

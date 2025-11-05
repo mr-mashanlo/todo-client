@@ -11,7 +11,12 @@ const useSession = () => {
 
   const refresh = () => sessionService.refresh();
 
-  return { signin, signup, signout, refresh };
+  return {
+    signin,
+    signup,
+    signout,
+    refresh
+  };
 
 };
 
