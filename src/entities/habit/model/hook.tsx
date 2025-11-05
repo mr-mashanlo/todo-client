@@ -30,7 +30,21 @@ const useHabit = ( params?: SearchParams ) => {
     onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'habits' ] } )
   } );
 
-  return { isPending, error, habits, create: create.mutate, update: update.mutate, remove: remove.mutate };
+  const { data: today } = useQuery( {
+    queryKey: [ 'today-habits' ],
+    queryFn: async () => await habitService.today(),
+    placeholderData: data => data
+  } );
+
+  return {
+    isPending,
+    error,
+    habits,
+    today,
+    create: create.mutate,
+    update: update.mutate,
+    remove: remove.mutate
+  };
 
 };
 

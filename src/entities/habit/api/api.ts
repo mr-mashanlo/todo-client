@@ -26,6 +26,11 @@ class HabitService {
     return await response.json();
   };
 
+  today = async (): Promise<PaginatedHabit> => {
+    const response = await kyInstance( 'habit/today' );
+    return await response.json();
+  };
+
 }
 
 export const habitService = new HabitService();
