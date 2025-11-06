@@ -1,19 +1,19 @@
 import { Button } from '@headlessui/react';
 import type { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 
+import { useHabit } from '@/entities/habit';
+
 import { titles } from '../model/config';
-import useCreateHabit from '../model/hook';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
 }
 
 const CreateHabitButton: FC<Props> = ( { children, ...others } ) => {
-  const { create } = useCreateHabit();
+  const { create } = useHabit();
 
   const handleButtonClick = () => {
-    const today = new Date( Date.now() );
-    const days = [ String( today.getDay() ) ];
+    const days = [ String( new Date().getDay() ) ];
     const title = titles[ Math.floor( Math.random() * ( titles.length + 1 ) ) ];
     create( { data: { title, days } } );
   };

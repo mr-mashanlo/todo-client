@@ -1,7 +1,7 @@
 import { Button } from '@headlessui/react';
 import type { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 
-import useDeleteHabit from '../model/hook';
+import { useHabit } from '@/entities/habit';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   id: string,
@@ -9,7 +9,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const DeleteHabitButton: FC<Props> = ( { id, children, ...others } ) => {
-  const { remove } = useDeleteHabit();
+  const { remove } = useHabit();
 
   return (
     <Button onClick={() => remove( { id } )} {...others}>{children}</Button>
