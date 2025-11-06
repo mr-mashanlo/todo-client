@@ -11,12 +11,12 @@ class ProgressService {
     return await response.json();
   };
 
-  create = async ( data: ProgressDTO ): Promise<Progress> => {
+  create = async ( data: Partial<ProgressDTO> ): Promise<Progress> => {
     const response = await kyInstance( 'progress', { method: 'post', body: JSON.stringify( data ) } );
     return await response.json();
   };
 
-  update = async ( id: string, data: ProgressDTO ): Promise<Progress> => {
+  update = async ( id: string, data: Partial<ProgressDTO> ): Promise<Progress> => {
     const response = await kyInstance( `progress/${id}`, { method: 'put', body: JSON.stringify( data ) } );
     return await response.json();
   };

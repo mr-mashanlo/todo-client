@@ -16,7 +16,7 @@ class HabitService {
     return await response.json();
   };
 
-  update = async ( id: string, data: HabitDTO ): Promise<Habit> => {
+  update = async ( id: string, data: Partial<HabitDTO> ): Promise<Habit> => {
     const response = await kyInstance( `habit/${id}`, { method: 'put', body: JSON.stringify( data ) } );
     return await response.json();
   };

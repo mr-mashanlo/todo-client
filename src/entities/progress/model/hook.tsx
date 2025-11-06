@@ -9,19 +9,19 @@ const useProgress = ( params?: SearchParams ) => {
 
   const queryClient = useQueryClient();
 
-  const { isPending, error, data: progress } = useQuery( {
-    queryKey: [ 'progress', params ],
+  const result = useQuery( {
+    queryKey: [ 'progress' ],
     queryFn: async () => await progressService.fetch( params ),
     placeholderData: data => data
   } );
 
   const create = useMutation( {
-    mutationFn: async ( { data }: { data: ProgressDTO } ) => await progressService.create( data ),
+    mutationFn: async ( { data }: { data: Partial<ProgressDTO> } ) => await progressService.create( data ),
     onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'progress' ] } )
   } );
 
   const update = useMutation( {
-    mutationFn: async ( { id, data }: { id: string, data: ProgressDTO } ) => await progressService.update( id, data ),
+    mutationFn: async ( { id, data }: { id: string, data: Partial<ProgressDTO> } ) => await progressService.update( id, data ),
     onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'progress' ] } )
   } );
 
@@ -30,17 +30,8 @@ const useProgress = ( params?: SearchParams ) => {
     onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'progress' ] } )
   } );
 
-  const { data: today } = useQuery( {
-    queryKey: [ 'today-progress' ],
-    queryFn: async () => await progressService.today(),
-    placeholderData: data => data
-  } );
-
   return {
-    isPending,
-    error,
-    progress,
-    today,
+    ...result,
     create: create.mutate,
     update: update.mutate,
     remove: remove.mutate

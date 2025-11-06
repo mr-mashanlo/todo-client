@@ -4,14 +4,16 @@ import type { PaginatedResponse } from '@/shared/types';
 
 export const ProgressDTO = z.object( {
   date: z.string(),
-  habits: z.array( z.object( { habit: z.string(), completed: z.boolean() } ) )
+  habits: z.array( z.object( { habit: z.string(), completed: z.boolean() } ) ),
+  total: z.number()
 } );
 
 export const Progress = z.object( {
   _id: z.string(),
   user: z.string(),
   date: z.string(),
-  habits: z.array( z.object( { habit: z.string(), completed: z.boolean() } ) )
+  habits: z.array( z.object( { habit: z.string(), completed: z.boolean() } ) ),
+  total: z.number()
 } );
 
 export type ProgressDTO = z.infer<typeof ProgressDTO>;

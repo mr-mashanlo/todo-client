@@ -9,8 +9,8 @@ const useHabit = ( params?: SearchParams ) => {
 
   const queryClient = useQueryClient();
 
-  const { isPending, error, data: habits } = useQuery( {
-    queryKey: [ 'habits', params ],
+  const result = useQuery( {
+    queryKey: [ 'habits' ],
     queryFn: async () => await habitService.fetch( params ),
     placeholderData: data => data
   } );
@@ -21,7 +21,7 @@ const useHabit = ( params?: SearchParams ) => {
   } );
 
   const update = useMutation( {
-    mutationFn: async ( { id, data }: { id: string, data: HabitDTO } ) => await habitService.update( id, data ),
+    mutationFn: async ( { id, data }: { id: string, data: Partial<HabitDTO> } ) => await habitService.update( id, data ),
     onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'habits' ] } )
   } );
 
@@ -30,17 +30,8 @@ const useHabit = ( params?: SearchParams ) => {
     onSuccess: () => queryClient.invalidateQueries( { queryKey: [ 'habits' ] } )
   } );
 
-  const { data: today } = useQuery( {
-    queryKey: [ 'today-habits' ],
-    queryFn: async () => await habitService.today(),
-    placeholderData: data => data
-  } );
-
   return {
-    isPending,
-    error,
-    habits,
-    today,
+    ...result,
     create: create.mutate,
     update: update.mutate,
     remove: remove.mutate
