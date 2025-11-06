@@ -4,6 +4,7 @@ import { habitRouter } from '@/pages/habits';
 import { homeRouter } from '@/pages/home';
 import { signInRouter } from '@/pages/sign-in';
 import { signUpRouter } from '@/pages/sign-up';
+import { todayRouter } from '@/pages/today';
 
 import MainLayout from './layouts/main';
 import ProtectedLayout from './layouts/protected';
@@ -28,9 +29,13 @@ const router = createBrowserRouter( [
         children: [
           {
             element: <MainLayout />,
-            children: [ homeRouter, habitRouter ]
+            children: [ todayRouter, habitRouter ]
           }
         ]
+      },
+      {
+        element: <MainLayout />,
+        children: [ homeRouter ]
       }
     ]
   }

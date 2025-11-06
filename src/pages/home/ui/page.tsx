@@ -1,26 +1,42 @@
 import { type FC } from 'react';
 import { Link } from 'react-router';
 
-import { Progress } from '@/widgets/progress';
-
 export const HomePage: FC = () => {
   return (
     <>
-      <title>Habits - Today's habits</title>
-      <meta name="description" content="Check off your daily habits and track progress effortlessly." />
-      <meta property="og:title" content="Habits - Today's habits" />
-      <meta property="og:description" content="Check off your daily habits and track progress effortlessly." />
+      <title>Habits by Lee Ma | Track and Improve Your Daily Routines</title>
+      <meta name="description" content="Habits is a personal project by Lee Ma designed to help you build, track, and maintain daily routines. Learn more about the project and get in touch for collaboration." />
+      <meta property="og:title" content="Habits by Lee Ma | Track and Improve Your Daily Routines" />
+      <meta property="og:description" content="Habits is a personal project by Lee Ma designed to help you build, track, and maintain daily routines. Learn more about the project and get in touch for collaboration." />
       <meta property="og:image" content="/meta.svg" />
       <meta property="og:site_name" content="Habits" />
       <meta property="twitter:card" content="summary" />
 
-      <div className="p-4 sm:p-15">
-        <div className="mb-8 flex items-center gap-4">
-          <h2 className="font-bold text-2xl">Today</h2>
+      <div className="p-4 py-10 sm:p-15">
+        <div className="mb-11 flex items-center gap-4">
+          <h2 className="font-bold text-2xl">Home</h2>
           <span className="font-bold text-2xl text-zinc-200">/</span>
-          <Link to="/habits" className="font-bold text-2xl text-zinc-200 hover:underline hover:text-black">go to habits</Link>
+          <Link to="/habits" className="font-bold text-2xl text-zinc-200 hover:underline hover:text-black">my habits</Link>
         </div>
-        <Progress />
+        <p className="mb-8">A minimal habit-tracking app designed to help you build consistency and monitor your daily routines.</p>
+        <ul className="mb-15 list-inside list-disc">
+          <li className="mb-3">User registration and authentication</li>
+          <li className="mb-3">Session token refresh</li>
+          <li className="mb-3">Create, edit, and delete habits</li>
+          <li className="mb-3">Daily progress tracking</li>
+          <li className="mb-3">Visual progress charts</li>
+        </ul>
+        <h2 className="mb-8 font-bold text-2xl">Contacts</h2>
+        <ul className="list-inside list-disc">
+          <li className="mb-3">
+            <span>Telegram - </span>
+            <a href="https://t.me/mr_mashanlo" className="text-blue-500 hover:underline">@mr_mashanlo</a>
+          </li>
+          <li className="mb-3">
+            <span>Linkedin - </span>
+            <a href="https://linkedin.com/in/mr-mashanlo" className="text-blue-500 hover:underline">@mr-mashanlo</a>
+          </li>
+        </ul>
       </div>
     </>
   );
