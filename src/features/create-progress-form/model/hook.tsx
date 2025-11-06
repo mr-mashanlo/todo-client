@@ -2,21 +2,22 @@ import { useForm } from '@tanstack/react-form';
 import { HTTPError } from 'ky';
 import moment from 'moment';
 
-import { useProgress } from '@/entities/progress';
+import { useProgress, useTodayProgress } from '@/entities/progress';
 import { mapServerErrors } from '@/shared/mappers';
 
 const useCreateProgress = () => {
-  const { create, today } = useProgress();
+  const { create } = useProgress();
+  const { data } = useTodayProgress();
 
   const form = useForm( {
     defaultValues: {
-      habits: today ? today.habits : []
+      habits: data?.habits || [],
+      total: data?.total || 0
     },
 
     onSubmit: async ( { value, formApi } ) => {
       try {
         const date = moment().format( 'YYYYMMDD' );
-        console.log( { date, ...value } );
         await create( { data: { date, ...value } } );
       } catch ( error ) {
         if ( error instanceof HTTPError ) {

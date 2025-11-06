@@ -20,14 +20,15 @@ const CreateProgressForm: FC<Props> = ( { habits } ) => {
     form.handleSubmit();
   };
 
-  const updateHabit = debounce( ( e: FormEvent<HTMLFormElement> ) => handleFormSubmit( e ), 3000 );
+  const updateHabit = debounce( ( e: FormEvent<HTMLFormElement> ) => handleFormSubmit( e ), 1000 );
 
   const handleFormChange = ( e: FormEvent<HTMLFormElement> ) => { updateHabit( e ); };
 
   const handleCheckboxChange = ( e: ChangeEvent<HTMLInputElement> ) => {
     const { checked, value } = e.target;
-    const habits = form.getFieldValue( 'habits' );
-    form.setFieldValue( 'habits', checked ? [ ...habits, { habit: value, completed: checked } ] : habits.filter( habit => habit.habit !== value ) );
+    const checkedHabits = form.getFieldValue( 'habits' );
+    form.setFieldValue( 'habits', checked ? [ ...checkedHabits, { habit: value, completed: checked } ] : checkedHabits.filter( habit => habit.habit !== value ) );
+    form.setFieldValue( 'total', habits.length );
   };
 
   return (
