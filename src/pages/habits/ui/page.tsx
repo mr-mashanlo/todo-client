@@ -18,7 +18,7 @@ export const HabitsPage: FC = () => {
 
       <div className="p-4 py-10 sm:p-15">
         <div className="mb-8 flex items-center gap-4">
-          <h2 className="font-bold text-2xl">Habits</h2>
+          <h1 className="font-bold text-2xl">Habits</h1>
           <CreateHabitButton className="w-7 h-7 flex items-center justify-center bg-zinc-200/50 fill-zinc-300 rounded-full cursor-pointer hover:bg-blue-400/10 hover:fill-blue-400">
             <AddIcon className="w-7 h-7" />
           </CreateHabitButton>

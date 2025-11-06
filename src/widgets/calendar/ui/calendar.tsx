@@ -10,10 +10,10 @@ const Calendar: FC = () => {
   return (
     <ul className="flex gap-2">
       {Array.from( { length: 31 - ( data?.total || 0 ) } ).map( ( _, index ) =>
-        <li key={index} className="h-40 grow bg-zinc-200/50"></li>
+        <li key={index} className="h-40 grow bg-zinc-200/50 rounded-xl"></li>
       )}
       {data?.data.map( progress =>
-        <li key={progress._id} className="h-40 grow bg-zinc-200/50 overflow-hidden relative">
+        <li key={progress._id} className="h-40 grow bg-zinc-200/50 rounded-xl overflow-hidden relative">
           <span className="w-full bg-black absolute bottom-0 transition-all" style={{ height: progress.habits.length === 0 ? 0 : Math.ceil( progress.habits.length * 100 / progress.total ) + '%' }}></span>
         </li>
       )}
