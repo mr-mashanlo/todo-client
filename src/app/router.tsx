@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router';
 
 import { habitRouter } from '@/pages/habits';
 import { homeRouter } from '@/pages/home';
+import { notFoundRouter } from '@/pages/not-found';
 import { signInRouter } from '@/pages/sign-in';
 import { signUpRouter } from '@/pages/sign-up';
 import { todayRouter } from '@/pages/today';
@@ -35,7 +36,7 @@ const router = createBrowserRouter( [
       },
       {
         element: <MainLayout />,
-        children: [ homeRouter ]
+        children: [ homeRouter, notFoundRouter ]
       }
     ]
   }

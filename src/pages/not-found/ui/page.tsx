@@ -1,0 +1,25 @@
+import { type FC } from 'react';
+import { Link } from 'react-router';
+
+const NotFoundPage: FC = () => {
+  return (
+    <>
+      <title>Page not found</title>
+      <meta property="og:title" content="Page not found" />
+      <meta property="og:image" content="/meta.svg" />
+      <meta property="og:site_name" content="Habits" />
+      <meta property="twitter:card" content="summary" />
+
+      <div className="h-screen p-4 py-10 sm:p-15">
+        <div className="mb-8 flex items-center gap-4">
+          <h1 className="font-bold text-2xl">Page 404</h1>
+          <span className="font-bold text-2xl text-zinc-200">/</span>
+          <Link to="/" className="font-bold text-2xl text-zinc-200 hover:underline hover:text-black">go to home</Link>
+        </div>
+        <p>The resource requested could not be found on this server.</p>
+      </div>
+    </>
+  );
+};
+
+export default NotFoundPage;
