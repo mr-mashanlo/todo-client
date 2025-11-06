@@ -1,14 +1,14 @@
 import { type FC } from 'react';
 
-import { useHabit } from '@/entities/habit';
+import { useTodayHabit } from '@/entities/habit';
 import { CreateProgressForm } from '@/features/create-progress-form';
 
 const Progress: FC = () => {
-  const { today } = useHabit();
+  const { data } = useTodayHabit();
 
   return (
     <div>
-      <CreateProgressForm habits={today?.data || []} />
+      <CreateProgressForm habits={data?.data || []} />
     </div>
   );
 };
