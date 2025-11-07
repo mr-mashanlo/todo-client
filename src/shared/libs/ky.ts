@@ -3,7 +3,7 @@ import ky from 'ky';
 import { useSessionStore } from '@/entities/session';
 
 export const kyInstance = ky.create( {
-  prefixUrl: 'http://localhost:4173',
+  prefixUrl: import.meta.env.VITE_BACK_URL,
   credentials: 'include',
   headers: { 'Content-Type': 'application/json' },
   retry: {
