@@ -2,7 +2,7 @@
 
 A minimal habit-tracking app designed to help you build consistency and monitor your daily routines.
 
-## Features include:
+## Features:
 
 - User registration and authentication
 - Session token refresh
@@ -12,5 +12,5 @@ A minimal habit-tracking app designed to help you build consistency and monitor 
 
 ## Contacts:
 
-- Telegram — [@mr_mashanlo](https://t.me/mr_mashanlo)
-- LinkedIn — [@mr-mashanlo](https://linkedin.com/in/mr-mashanlo)
+- Telegram - [@mr_mashanlo](https://t.me/mr_mashanlo)
+- LinkedIn - [@mr-mashanlo](https://linkedin.com/in/mr-mashanlo)
